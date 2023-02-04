@@ -1,0 +1,23 @@
+POST http://127.0.0.1:8000/measurements/
+{
+"project": 4,
+"value": 20.0
+}
+###
+GET http://127.0.0.1:8000/measurements/
+
+
+###
+GET http://127.0.0.1:8000/measurements/1
+
+### 
+PATCH http://127.0.0.1:8000/measurements/1
+Content-Type: application/json
+{
+"value": 16.0
+}
+###
+DELETE http://127.0.0.1:8000/measurements/4
+
+
+
