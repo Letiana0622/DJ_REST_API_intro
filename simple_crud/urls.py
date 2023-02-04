@@ -19,10 +19,6 @@ from django.urls import path
 
 # TODO: настройте роутер и подключите `ProjectViewSet` и `MeasurementViewSet`
 
-# urlpatterns = [
-#     path('admin/', admin.site.urls),
-    # path('measurements/', MeasurementViewSet.as_view()),
-# ]
 
 from measurements.views import ProjectViewSet, MeasurementViewSet
 from rest_framework.routers import DefaultRouter
@@ -30,4 +26,8 @@ from rest_framework.routers import DefaultRouter
 router = DefaultRouter()
 router.register(r'projects', ProjectViewSet, basename='project')
 router.register(r'measurements', MeasurementViewSet, basename='measurement')
-urlpatterns = router.urls
+# urlpatterns = router.urls
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+]+router.urls

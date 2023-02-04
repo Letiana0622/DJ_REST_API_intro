@@ -10,20 +10,20 @@ class ProjectViewSet(viewsets.ModelViewSet):
     queryset = Project.objects.all()
     serializer_class = ProjectSerializer
 
-
-    def create(self, request):
-        return Response({'status': 'OK'})
-
-    def list(self, request):
-        serializer = Project.objects.all()
-        serializer_class = ProjectSerializer(serializer, many=True)
-        return Response(serializer_class.data)
-
-    def update(self, request, pk=None):
-        return Response({'status': 'OK'})
-
-    def destroy(self, request, pk=None):
-        return Response({'status': 'OK'})
+    #
+    # def create(self, request):
+    #     return Response({'status': 'OK'})
+    #
+    # def list(self, request):
+    #     serializer = Project.objects.all()
+    #     serializer_class = ProjectSerializer(serializer, many=True)
+    #     return Response(serializer_class.data)
+    #
+    # def update(self, request, pk=None):
+    #     return Response({'status': 'OK'})
+    #
+    # def destroy(self, request, pk=None):
+    #     return Response({'status': 'OK'})
 
     # def retrieve(self, request, pk=None):
     #     pass
@@ -34,21 +34,21 @@ class ProjectViewSet(viewsets.ModelViewSet):
 class MeasurementViewSet(viewsets.ModelViewSet):
     serializer_class = MeasurementSerializer
     queryset = Measurement.objects.all()
-
-    def create(self, request):
-        return Response({'status': 'OK'})
-
-    def list(self, request):
-        serializer = Measurement.objects.all()
-        serializer_class = MeasurementSerializer(serializer, many=True)
-        return Response(serializer_class.data)
-
-    def update(self, request, pk=None):
-        return Response({'status': 'OK'})
-
-    def destroy(self, request, pk=None):
-        return Response({'status': 'OK'})
-
+    #
+    # def create(self, request):
+    #     return Response({'status': 'OK'})
+    #
+    # def list(self, request):
+    #     serializer = Measurement.objects.all()
+    #     serializer_class = MeasurementSerializer(serializer, many=True)
+    #     return Response(serializer_class.data)
+    #
+    # def update(self, request, pk=None):
+    #     return Response({'status': 'OK'})
+    #
+    # def destroy(self, request, pk=None):
+    #     return Response({'status': 'OK'})
+    #
     # def retrieve(self, request, pk=None):
     #     pass
     #

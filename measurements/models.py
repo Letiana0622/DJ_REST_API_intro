@@ -1,6 +1,6 @@
 from django.db import models
 
-
+# m1
 class Project(models.Model):
     """Объект на котором проводят измерения."""
     #
