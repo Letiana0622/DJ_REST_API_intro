@@ -1,56 +1,42 @@
 from rest_framework.viewsets import ModelViewSet
-from rest_framework import viewsets
+from rest_framework import viewsets, generics
+from rest_framework.generics import GenericAPIView, get_object_or_404
 from .models import Project, Measurement
-from .serializers import ProjectSerializer, MeasurementSerializer
+from .serializers import SensorSerializer, SensorDetailsSerializer
 from rest_framework.response import Response
 
 # Необходимо реализовать REST API для создания/получения/обновления/удаления показания температуры.
 
-class ProjectViewSet(viewsets.ModelViewSet):
+class AddListSensorView(generics.CreateAPIView, generics.ListAPIView):
+    serializer_class = SensorSerializer
     queryset = Project.objects.all()
-    serializer_class = ProjectSerializer
 
-    #
-    # def create(self, request):
-    #     return Response({'status': 'OK'})
-    #
-    # def list(self, request):
-    #     serializer = Project.objects.all()
-    #     serializer_class = ProjectSerializer(serializer, many=True)
-    #     return Response(serializer_class.data)
-    #
-    # def update(self, request, pk=None):
-    #     return Response({'status': 'OK'})
-    #
-    # def destroy(self, request, pk=None):
-    #     return Response({'status': 'OK'})
+    def perform_create(self, serializer):
+        project = get_object_or_404(Project, id=self.request.data.get('id'))
+        serializer.save(project=project)
 
-    # def retrieve(self, request, pk=None):
-    #     pass
-    #
-    # def partial_update(self, request, pk=None):
-    #     pass
+# class ListSensorView(generics.ListAPIView):
+#     queryset = Project.objects.filter(draft=False)
+#     serializer_class = SensorSerializer
 
-class MeasurementViewSet(viewsets.ModelViewSet):
-    serializer_class = MeasurementSerializer
+class RetrieveUpdateDestroySensorView(generics.RetrieveUpdateDestroyAPIView):
+    serializer_class = SensorSerializer
+    queryset = Project.objects.all()
+
+
+class AddListSensorDetailView(generics.CreateAPIView, generics.ListAPIView):
+    serializer_class = SensorDetailsSerializer
     queryset = Measurement.objects.all()
-    #
-    # def create(self, request):
-    #     return Response({'status': 'OK'})
-    #
-    # def list(self, request):
-    #     serializer = Measurement.objects.all()
-    #     serializer_class = MeasurementSerializer(serializer, many=True)
-    #     return Response(serializer_class.data)
-    #
-    # def update(self, request, pk=None):
-    #     return Response({'status': 'OK'})
-    #
-    # def destroy(self, request, pk=None):
-    #     return Response({'status': 'OK'})
-    #
-    # def retrieve(self, request, pk=None):
-    #     pass
-    #
-    # def partial_update(self, request, pk=None):
-    #     pass
+
+    def perform_create(self, serializer):
+        measurement = get_object_or_404(Measurement, id=self.request.data.get('id'))
+        serializer.save(measurement=measurement)
+
+
+# class ListSensorDetailView(generics.ListAPIView):
+#     serializer_class = SensorDetailsSerializer
+#     queryset = Measurement.objects.all()
+
+class RetrieveUpdateDestroySensorDetailView(generics.RetrieveUpdateDestroyAPIView):
+    serializer_class = SensorDetailsSerializer
+    queryset = Measurement.objects.all()

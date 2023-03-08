@@ -19,15 +19,20 @@ from django.urls import path
 
 # TODO: настройте роутер и подключите `ProjectViewSet` и `MeasurementViewSet`
 
+from measurements.views import AddListSensorView, AddListSensorDetailView
+from measurements.views import RetrieveUpdateDestroySensorView, RetrieveUpdateDestroySensorDetailView
 
-from measurements.views import ProjectViewSet, MeasurementViewSet
-from rest_framework.routers import DefaultRouter
-
-router = DefaultRouter()
-router.register(r'projects', ProjectViewSet, basename='project')
-router.register(r'measurements', MeasurementViewSet, basename='measurement')
+# from rest_framework.routers import DefaultRouter
+# router = DefaultRouter()
+# router.register(r'projects', ProjectViewSet, basename='project')
+# router.register(r'measurements', MeasurementViewSet, basename='measurement')
 # urlpatterns = router.urls
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-]+router.urls
+    path('sensor/', AddListSensorView.as_view()),
+    path('sensordetail/', AddListSensorDetailView.as_view()),
+    path('changesensor/<pk>/', RetrieveUpdateDestroySensorView.as_view()),
+    path('changesensordetail/<pk>/', RetrieveUpdateDestroySensorDetailView.as_view()),
+]
+              # +router.urls

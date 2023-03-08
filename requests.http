@@ -10,7 +10,7 @@ GET http://127.0.0.1:8000/measurements/
 ###
 GET http://127.0.0.1:8000/measurements/1
 
-### 
+###
 PATCH http://127.0.0.1:8000/measurements/1
 Content-Type: application/json
 {
@@ -19,5 +19,28 @@ Content-Type: application/json
 ###
 DELETE http://127.0.0.1:8000/measurements/4
 
+###
+POST http://127.0.0.1:8000/projects/
+{
+"name": "датчик4",
+"latitude": 20.00,
+"longtitude": 20.00
+}
+
+###
+GET http://127.0.0.1:8000/projects/
+
+
+###
+GET http://127.0.0.1:8000/projects/1
+
+###
+PATCH http://127.0.0.1:8000/projects/4
+Content-Type: application/json
+{
+"name": "4"
+}
+###
+DELETE http://127.0.0.1:8000/projects/4
 
 
