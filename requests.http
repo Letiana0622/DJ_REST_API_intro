@@ -1,46 +1,43 @@
-POST http://127.0.0.1:8000/measurements/
-{
-"project": 4,
-"value": 20.0
-}
-###
-GET http://127.0.0.1:8000/measurements/
+# примеры API-запросов
 
-
-###
-GET http://127.0.0.1:8000/measurements/1
-
-###
-PATCH http://127.0.0.1:8000/measurements/1
+# получение датчиков
+GET http://127.0.0.1:8000/api/sensor/
 Content-Type: application/json
-{
-"value": 16.0
-}
-###
-DELETE http://127.0.0.1:8000/measurements/4
 
 ###
-POST http://127.0.0.1:8000/projects/
-{
-"name": "датчик4",
-"latitude": 20.00,
-"longtitude": 20.00
-}
 
-###
-GET http://127.0.0.1:8000/projects/
-
-
-###
-GET http://127.0.0.1:8000/projects/1
-
-###
-PATCH http://127.0.0.1:8000/projects/4
+# создание датчика
+POST http://127.0.0.1:8000/api/sensor/
 Content-Type: application/json
+
 {
-"name": "4"
+  "name": "ESP32",
+  "description": "Датчик на кухне за холодильником"
 }
 ###
-DELETE http://127.0.0.1:8000/projects/4
 
+# обновление датчика
+PATCH http://127.0.0.1:8000/api/changesensor/1/
+Content-Type: application/json
+
+{
+  "description": "Перенес датчик на балкон"
+}
+
+###
+
+# добавление измерения
+POST http://127.0.0.1:8000/api/measurement/
+Content-Type: application/json
+
+{
+  "sensor": 1,
+  "temperature": 22.3
+}
+
+###
+
+# получение информации по датчику
+GET http://127.0.0.1:8000/api/sensordetail/1/
+Content-Type: application/json
 

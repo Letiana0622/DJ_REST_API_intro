@@ -1,34 +1,23 @@
 from django.db import models
 
-# m1
-class Project(models.Model):
-    """Объект на котором проводят измерения."""
-    #
+# TODO: опишите модели датчика (Sensor) и измерения (Measurement)
+class Sensor(models.Model):
+    # - датчик:
     # - название
-    # - координаты широты
-    # - координаты долготы
-    # - дата создания
-    # - датаобновления
+    # - описание(необязательное, например, "спальня"
+    # "корридор на 2 этаже")
 
     name = models.TextField()
-    latitude = models.FloatField()
-    longitude = models.FloatField()
-    created_at = models.DateTimeField(
-        auto_now_add=True
-    )
-    updated_at = models.DateTimeField(
-        auto_now=True
-    )
-
+    description = models.TextField()
 
 class Measurement(models.Model):
-    """Измерение температуры на объекте."""
-    # - ID объекта
+    # - измерение температуры:
+    # - ID датчика
     # - температура при измерении
-    # - дата создания измерения
+    # - дата измерения
 
-    value = models.FloatField()
-    project = models.ForeignKey(Project, on_delete=models.CASCADE)
+    sensor = models.ForeignKey(Sensor, on_delete=models.CASCADE)
+    temperature = models.FloatField()
     created_at = models.DateTimeField(
         auto_now_add=True
     )

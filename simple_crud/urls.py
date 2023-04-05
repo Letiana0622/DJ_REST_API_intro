@@ -19,8 +19,8 @@ from django.urls import path
 
 # TODO: настройте роутер и подключите `ProjectViewSet` и `MeasurementViewSet`
 
-from measurements.views import AddListSensorView, AddListSensorDetailView
-from measurements.views import RetrieveUpdateDestroySensorView, RetrieveUpdateDestroySensorDetailView
+from measurements.views import AddListMeasurementView, AddListSensorView, ListSensorDetailView
+from measurements.views import RetrieveUpdateDestroyMeasurementView, RetrieveUpdateDestroySensorView
 
 # from rest_framework.routers import DefaultRouter
 # router = DefaultRouter()
@@ -31,8 +31,9 @@ from measurements.views import RetrieveUpdateDestroySensorView, RetrieveUpdateDe
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('sensor/', AddListSensorView.as_view()),
-    path('sensordetail/', AddListSensorDetailView.as_view()),
     path('changesensor/<pk>/', RetrieveUpdateDestroySensorView.as_view()),
-    path('changesensordetail/<pk>/', RetrieveUpdateDestroySensorDetailView.as_view()),
+    path('measurement/', AddListMeasurementView.as_view()),
+    path('changemeasurement/<pk>/', RetrieveUpdateDestroyMeasurementView.as_view()),
+    path('sensordetail/', ListSensorDetailView.as_view()),
 ]
               # +router.urls
